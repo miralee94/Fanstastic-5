@@ -7,7 +7,7 @@ class Strid:
         #self.hero =  self.check_hero()
         #self.monster = self.check_monster()
 
-        self.hero = {'name': 'riddare', 'initiativ': 5, 'tålighet': 9, 'atack': 6, 'smidighet': 4}
+        self.hero = {'name': 'riddare', 'initiativ': 5, 'tålighet': 8, 'atack': 6, 'smidighet': 4}
         self.monster = {'name': 'jättespindel', 'initiativ': 7, 'tålighet': 5, 'atack': 2, 'smidighet': 3}
 
         self.hero_förmågor = [i for i in self.hero.values()]
@@ -24,6 +24,7 @@ class Strid:
         self.monsters_antal_kast = []
 
         self.monster_liv = self.monster_förmågor[2]
+        self.heroes_liv = self.hero_förmågor[2]
 
     def huvud_menu(self):
         huvud_meny = '''Du har hamnat i ett rum med monster, vilket leder till en strid. \nDet ska nu bestämmas vem som ska få börja först'''
@@ -104,6 +105,7 @@ class Strid:
             if self.hero_förmågor[0] == 'riddare' and self.monster_antal_atack == 0:
                 print('Riddaren använder sin speciella förmåga, attacken blockerad\n Nu är det riddarens tur')
                 self.monster_antal_atack +=1
+                self.monster_liv = self.monster_liv - 1
                 self.hero_choise()
             else:
                 riddarens_liv = self.hero_förmågor[2] - 1
