@@ -8,7 +8,7 @@ class Strid:
         #self.monster = self.check_monster()
 
         self.hero = {'name': 'riddare', 'initiativ': 5, 'tålighet': 9, 'atack': 6, 'smidighet': 4}
-        self.monster = {'name': 'jättespindel', 'initiativ': 7, 'tålighet': 50, 'atack': 2, 'smidighet': 3}
+        self.monster = {'name': 'jättespindel', 'initiativ': 7, 'tålighet': 5, 'atack': 2, 'smidighet': 3}
 
         self.hero_förmågor = [i for i in self.hero.values()]
         self.monster_förmågor = [i for i in self.monster.values()]
@@ -22,6 +22,8 @@ class Strid:
 
         self.heroes_antal_kast = []
         self.monsters_antal_kast = []
+
+        self.monster_liv = self.monster_förmågor[2]
 
     def huvud_menu(self):
         huvud_meny = '''Du har hamnat i ett rum med monster, vilket leder till en strid. \nDet ska nu bestämmas vem som ska få börja först'''
@@ -71,8 +73,8 @@ class Strid:
         print(f'Monster: {self.monsters_kast}')
 
         if self.heroes_kast > self.monsters_kast:
-            spindels_liv = self.monster_förmågor[2] - 1
-            if spindels_liv <= 0:
+            self.monster_liv = self.monster_liv - 1
+            if self.monster_liv <= 0:
                 self.monster.clear()
                 print('Jättespindel dog')
             else:
