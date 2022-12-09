@@ -8,7 +8,7 @@ class Strid:
         #self.monster = self.check_monster()
 
         self.hero = {'name': 'riddare', 'initiativ': 5, 'tålighet': 9, 'atack': 6, 'smidighet': 4}
-        self.monster = {'name': 'jättespindel', 'initiativ': 7, 'tålighet': 1, 'atack': 2, 'smidighet': 3}
+        self.monster = {'name': 'jättespindel', 'initiativ': 7, 'tålighet': 50, 'atack': 2, 'smidighet': 3}
 
         self.hero_förmågor = [i for i in self.hero.values()]
         self.monster_förmågor = [i for i in self.monster.values()]
@@ -77,6 +77,8 @@ class Strid:
                 print('Jättespindel dog')
             else:
                 self.monster_atack()
+        else:
+            self.monster_atack()
 
     def monster_atack(self):
         print('Monster attackerar')
@@ -113,7 +115,9 @@ class Strid:
                 print('Riddaren använder sin speciella förmåga, attacken blockerad')
                 self.monster_antal_atack +=1
                 self.hero_choise()
-
+            else:
+                self.monster_antal_atack +=1
+                self.hero_choise()
 
     def hero_choise(self):
         hero_choise_menu = '''Välj mellan följande:
