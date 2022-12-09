@@ -58,6 +58,46 @@ class Tjuven(Character):
                 f"Tjuven försöker träffa en {self.tjuv_skill} men misslyckas och missar attacken.")
 
 
+class Big_Spider(Character):
+    def __init__(self):
+        super().__init__(7, 1, 2, 3)
+        self.name = "Big Spider"
+
+    @classmethod
+    def chance_of_appearance(cls):
+        return random.random() <= 0.2
+
+
+class Skeleton(Character):
+    def __init__(self):
+        super().__init__(4, 2, 3, 3)
+        self.name = "Skeleton"
+
+    @classmethod
+    def chance_of_appearance(cls):
+        return random.random() <= 0.15
+
+
+class Orc(Character):
+    def __init__(self):
+        super().__init__(6, 3, 4, 4)
+        self.name = "Orc"
+
+    @classmethod
+    def chance_of_appearance(cls):
+        return random.random() <= 0.1
+
+
+class Troll(Character):
+    def __init__(self):
+        super().__init__(2, 4, 7, 2)
+        self.name = "Troll"
+
+    @classmethod
+    def chance_of_appearance(cls):
+        return random.random() <= 0.05
+
+
 if __name__ == "__main__":
     # Exempel på hur man instanserar klassen
     riddare = Riddaren(initiativ=5, tålighet=9, attack=6, smidighet=4)
