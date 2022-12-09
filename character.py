@@ -11,7 +11,7 @@ class Character:
 
 class Riddaren(Character):
     def __init__(self, initiativ, tålighet, attack, smidighet):
-        super().__init__(initiativ, tålighet, attack, smidighet)
+        super().__init__(5, 9, 6, 4)
         self.riddare_skill = "Sköldblock"
         self.block_chans = True
 
@@ -31,7 +31,7 @@ class Riddaren(Character):
 
 class Trollkarlen(Character):
     def __init__(self, initiativ, tålighet, attack, smidighet):
-        super().__init__(initiativ, tålighet, attack, smidighet)
+        super().__init__(6, 4, 9, 5)
         self.trollkarl_skill = "Ljussken"
 
     def use_skill(self):
@@ -46,7 +46,7 @@ class Trollkarlen(Character):
 
 class Tjuven(Character):
     def __init__(self, initiativ, tålighet, attack, smidighet):
-        super().__init__(initiativ, tålighet, attack, smidighet)
+        super().__init__(7, 5, 5, 7)
         self.tjuv_skill = "Kritisk träff"
 
     def use_skill(self):
