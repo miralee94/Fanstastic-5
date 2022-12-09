@@ -1,3 +1,5 @@
+
+
 import random
 
 
@@ -10,8 +12,9 @@ class Character:
 
 
 class Riddaren(Character):
-    def __init__(self, initiativ, tålighet, attack, smidighet):
-        super().__init__(initiativ, tålighet, attack, smidighet)
+    def __init__(self):
+        super().__init__(5, 9, 6, 4)
+        self.name = "Riddaren"
         self.riddare_skill = "Sköldblock"
         self.block_chans = True
 
@@ -30,9 +33,10 @@ class Riddaren(Character):
 
 
 class Trollkarlen(Character):
-    def __init__(self, initiativ, tålighet, attack, smidighet):
-        super().__init__(initiativ, tålighet, attack, smidighet)
+    def __init__(self):
+        super().__init__(6, 4, 9, 5)
         self.trollkarl_skill = "Ljussken"
+        self.name = "The Wizard"
 
     def use_skill(self):
         if random.random() <= 0.80:
@@ -45,10 +49,10 @@ class Trollkarlen(Character):
 
 
 class Tjuven(Character):
-    def __init__(self, initiativ, tålighet, attack, smidighet):
-        super().__init__(initiativ, tålighet, attack, smidighet)
+    def __init__(self):
+        super().__init__(7, 5, 5, 7)
         self.tjuv_skill = "Kritisk träff"
-
+        self.name = "The Thief"
     def use_skill(self):
         if random.random() <= 0.25:
             print(
@@ -58,7 +62,7 @@ class Tjuven(Character):
                 f"Tjuven försöker träffa en {self.tjuv_skill} men misslyckas och missar attacken.")
 
 
-class big_spider(Character):
+class Big_Spider(Character):
     def __init__(self):
         super().__init__(7, 1, 2, 3)
         self.name = "Big Spider"
@@ -67,7 +71,8 @@ class big_spider(Character):
     def chance_of_appearance(cls):
         return random.random() <= 0.2
 
-class skeleton(Character):
+
+class Skeleton(Character):
     def __init__(self):
         super().__init__(4, 2, 3, 3)
         self.name = "Skeleton"
@@ -76,7 +81,8 @@ class skeleton(Character):
     def chance_of_appearance(cls):
         return random.random() <= 0.15
 
-class orc(Character):
+
+class Orc(Character):
     def __init__(self):
         super().__init__(6, 3, 4, 4)
         self.name = "Orc"
@@ -95,12 +101,24 @@ class Troll(Character):
     def chance_of_appearance(cls):
         return random.random() <= 0.05
 
-    
-    
 
+def print_stats(character):
+    print(f"Klass: {character.name}")
+    print(f"Initiativ: {character.initiativ}")
+    print(f"Tålighet: {character.tålighet}")
+    print(f"Attack: {character.attack}")
+    print(f"Smidighet: {character.smidighet}")
+    print("")
+
+def print_hero():
+    print_stats(character=Riddaren())
+    print_stats(character=Trollkarlen())
+    print_stats(character=Tjuven())
 
 if __name__ == "__main__":
     # Exempel på hur man instanserar klassen
-    riddare = Riddaren(initiativ=5, tålighet=9, attack=6, smidighet=4)
-    # Exempel på hur man använder klassen, i detta fall Riddarens specialförmåga
-    riddare.use_skill()
+    # riddare = Riddaren(initiativ=5, tålighet=9, attack=6, smidighet=4)
+    # # Exempel på hur man använder klassen, i detta fall Riddarens specialförmåga
+    # riddare.use_skill()
+    pass
+    
