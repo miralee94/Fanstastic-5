@@ -16,6 +16,6 @@ class Guldsmycket(Skatter):
 class Ädelsten(Skatter):
     super().__init__(14,10)
     
-class Liten_skattkista:
+class Liten_skattkista(Skatter):
     super().__init__(20,5)
     
