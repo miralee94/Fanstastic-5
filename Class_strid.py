@@ -75,6 +75,7 @@ class Strid:
 
         if self.heroes_kast > self.monsters_kast:
             self.monster_liv = self.monster_liv - 1
+            print(f'Monster har {self.monster_liv} liv kvar')
             if self.monster_liv <= 0:
                 self.monster.clear()
                 print('Jättespindel dog')
@@ -105,13 +106,14 @@ class Strid:
             if self.hero_förmågor[0] == 'riddare' and self.monster_antal_atack == 0:
                 print('Riddaren använder sin speciella förmåga, attacken blockerad\n Nu är det riddarens tur')
                 self.monster_antal_atack +=1
-                self.monster_liv = self.monster_liv - 1
+#               self.monster_liv = self.monster_liv - 1
                 self.hero_choise()
             else:
-                riddarens_liv = self.hero_förmågor[2] - 1
+                riddarens_liv = riddarens_liv - 1
+                print(f'Hero har {riddarens_liv} liv kvar')
                 if riddarens_liv <=0:
                     self.hero.clear()
-                    print('Riddaren dog')
+                    print('Hero dog')
                 else:
                     self.hero_choise()
         elif self.monsters_kast < self.heroes_kast:
