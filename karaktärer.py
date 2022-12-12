@@ -121,11 +121,11 @@ def hero_choose():
     # if choice2 == "b" or choice2 == "B":
     #     self.start_loop()
     if choice2 == "1":
-        hero = Riddaren()
+        hero = 'Riddaren'
     elif choice2 == "2":
-        hero = Trollkarlen()
+        hero = 'Trollkarlen'
     elif choice2 == "3":
-        hero = Tjuven()
+        hero = 'Tjuven'
     else:
         print("\nYou didn't enter a valid input, try again!")
     return hero
