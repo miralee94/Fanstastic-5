@@ -33,6 +33,7 @@ class Riddaren(Character):
 class Trollkarlen(Character):
     def __init__(self):
         super().__init__(6, 4, 9, 5)
+        self.name = "Trollkarlen Gandalf"
         self.trollkarl_skill = "Ljussken"
 
     def use_skill(self):
@@ -48,6 +49,7 @@ class Trollkarlen(Character):
 class Tjuven(Character):
     def __init__(self):
         super().__init__(7, 5, 5, 7)
+        self.name = "Tjuven"
         self.tjuv_skill = "Kritisk träff"
 
     def use_skill(self):
@@ -105,6 +107,13 @@ def print_stats(character):
     print(f"Tålighet: {character.tålighet}")
     print(f"Attack: {character.attack}")
     print(f"Smidighet: {character.smidighet}")
+    print("")
+
+
+def print_hero():
+    print_stats(character=Riddaren())
+    print_stats(character=Trollkarlen())
+    print_stats(character=Tjuven())
 
 
 if __name__ == "__main__":
@@ -113,4 +122,4 @@ if __name__ == "__main__":
     # # Exempel på hur man använder klassen, i detta fall Riddarens specialförmåga
     # riddare.use_skill()
 
-    print_stats(character=Riddaren())
+    print_hero()
