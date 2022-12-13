@@ -1,5 +1,6 @@
 from karaktärer import print_hero
 from strid import Strid
+from karta import Board
 
 
 class Menu:
@@ -49,13 +50,27 @@ class Menu:
 
     def new_game(self):
         s = Strid()
+        b = Board(0)
         player_name = self.name_choice()
-        print("")
         print_hero()
         print(Menu.Choice_of_hero)
         s.hero_choose()
         s.check_hero()
-        # self.wait_for_user()
+        b.size_board()
+        b.starting_pos()
+        while True:
+            b.moving_topos()
+            s.turn_order()
+
+    # def new_game(self):
+    #     s = Strid()
+    #     player_name = self.name_choice()
+    #     print("")
+    #     print_hero()
+    #     print(Menu.Choice_of_hero)
+    #     s.hero_choose()
+    #     s.check_hero()
+    #     # self.wait_for_user()
 
     def start_loop(self):
         self.running = True
@@ -63,7 +78,6 @@ class Menu:
             print(Menu.MAIN_MENU_TEXT)
             choice = self.user_choice()
             self.menu_commands(choice)
-            # self.wait_for_user()
 
 
 def main():

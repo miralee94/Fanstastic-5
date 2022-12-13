@@ -74,13 +74,10 @@ class Strid:
     def check_hero(self):
         if self.hero == 'Riddaren':
             self.hero = Riddaren()
-            self.turn_order()
         elif self.hero == 'Tjuven':
             self.hero = Tjuven()
-            self.turn_order()
         elif self.hero == 'Trollkarlen':
             self.hero = Trollkarlen()
-            self.turn_order()
 
     def heroes_attack(self):
         print(f'{self.hero.name} tries to attack')

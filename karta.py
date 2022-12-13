@@ -72,43 +72,74 @@ class Board:
                     self.coord_x = self.my_board.cells.index(j)
                     self.coord_y = j.index(i)
 
+    # def moving_topos(self):
+    #     while True:
+    #         self.vart_är_jag()
+    #         self.move = input("""\n
+    #                 Enter Direction:
+    #                 1. Left
+    #                 2. Right
+    #                 3. Up
+    #                 4. Down \n""")
+    #         try:
+    #             if self.move == "1":
+    #                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+    #                 self.my_board.set_cell(
+    #                     self.coord_x, (self.coord_y - 1), 'H')
+    #                 print(self.my_board)
+    #                 self.create_a_room()
+    #                 # self.insert_monster_to_room()
+    #             elif self.move == "2":
+    #                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+    #                 self.my_board.set_cell(
+    #                     self.coord_x, (self.coord_y + 1), 'H')
+    #                 print(self.my_board)
+    #                 self.create_a_room()
+    #             elif self.move == "3":
+    #                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+    #                 self.my_board.set_cell(
+    #                     (self.coord_x - 1), self.coord_y, 'H')
+    #                 print(self.my_board)
+    #                 self.create_a_room()
+    #             elif self.move == "4":
+    #                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+    #                 self.my_board.set_cell(
+    #                     (self.coord_x + 1), self.coord_y, 'H')
+    #                 print(self.my_board)
+    #                 self.create_a_room()
+    #         except IndexError:
+    #             print("You can't go outside the map!")
     def moving_topos(self):
-        while True:
-            self.vart_är_jag()
-            self.move = input("""\n
-                    Enter Direction:
-                    1. Left
-                    2. Right
-                    3. Up
-                    4. Down \n""")
-            try:
-                if self.move == "1":
-                    self.my_board.set_cell((self.coord_x), self.coord_y, "X")
-                    self.my_board.set_cell(
-                        self.coord_x, (self.coord_y - 1), 'H')
-                    print(self.my_board)
-                    self.create_a_room()
-                    # self.insert_monster_to_room()
-                elif self.move == "2":
-                    self.my_board.set_cell((self.coord_x), self.coord_y, "X")
-                    self.my_board.set_cell(
-                        self.coord_x, (self.coord_y + 1), 'H')
-                    print(self.my_board)
-                    self.create_a_room()
-                elif self.move == "3":
-                    self.my_board.set_cell((self.coord_x), self.coord_y, "X")
-                    self.my_board.set_cell(
-                        (self.coord_x - 1), self.coord_y, 'H')
-                    print(self.my_board)
-                    self.create_a_room()
-                elif self.move == "4":
-                    self.my_board.set_cell((self.coord_x), self.coord_y, "X")
-                    self.my_board.set_cell(
-                        (self.coord_x + 1), self.coord_y, 'H')
-                    print(self.my_board)
-                    self.create_a_room()
-            except IndexError:
-                print("You can't go outside the map!")
+        self.vart_är_jag()
+        move = input("""\n
+            Enter Direction:
+            1. Left
+            2. Right
+            3. Up
+            4. Down \n""")
+        try:
+            if move == "1":
+                self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+                self.my_board.set_cell(
+                    self.coord_x, (self.coord_y - 1), 'H')
+                print(self.my_board)
+            elif move == "2":
+                self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+                self.my_board.set_cell(
+                    self.coord_x, (self.coord_y + 1), 'H')
+                print(self.my_board)
+            elif move == "3":
+                self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+                self.my_board.set_cell(
+                    (self.coord_x - 1), self.coord_y, 'H')
+                print(self.my_board)
+            elif move == "4":
+                self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+                self.my_board.set_cell(
+                    (self.coord_x + 1), self.coord_y, 'H')
+                print(self.my_board)
+        except IndexError:
+            print("You can't go outside the map!")
 
     # def insert_treasure_to_room(self):
     #    if self.move == "1":
@@ -130,15 +161,15 @@ class Board:
             self.treasure is True
             print("Lösa Slantar finns")
         else:
-            print('Ingen skatt')
+            pass
 
-        pengapung = Lösa_slantar()
+        pengapung = Pengapung()
         pengapung.chance_of_appearance()
         if pengapung.chance_of_appearance() is True:
             self.treasure is True
             print('Pengapung finns.')
         else:
-            print('Ingen skatt')
+            pass
 
         guldsmycket = Guldsmycket()
         guldsmycket.chance_of_appearance()
@@ -146,7 +177,7 @@ class Board:
             self.treasure is True
             print('Guldsmycket finns')
         else:
-            print('Ingen skatt')
+            pass
 
         ädelsten = Ädelsten()
         ädelsten.chance_of_appearance()
@@ -154,7 +185,7 @@ class Board:
             self.treasure is True
             print('Ädelsten finns')
         else:
-            print('Ingen skatt')
+            pass
 
         liten_kista = Liten_skattkista()
         liten_kista.chance_of_appearance()
@@ -162,7 +193,7 @@ class Board:
             self.treasure is True
             print('Liten Kista finns')
         else:
-            print('Ingen skatt')
+            pass
 
     def shuffle_monster(self):
         spider = Big_Spider()
@@ -171,7 +202,7 @@ class Board:
             self.monster is True
             print('Big spider finns i rummet')
         else:
-            print('ingen Big spider')
+            pass
 
         skeleton = Skeleton()
         skeleton.chance_of_appearance()
@@ -179,7 +210,7 @@ class Board:
             self.monster is True
             print('Skeleton finns i rummet')
         else:
-            print('ingen Skeleton')
+            pass
 
         troll = Troll()
         troll.chance_of_appearance()
@@ -187,7 +218,7 @@ class Board:
             self.monster is True
             print('Troll finns i rummet')
         else:
-            print('ingen Troll')
+            pass
 
         orc = Orc()
         orc.chance_of_appearance()
@@ -195,7 +226,7 @@ class Board:
             self.monster is True
             print('Orc finns i rummet')
         else:
-            print('ingen Orc')
+            pass
 
 
 def main():
