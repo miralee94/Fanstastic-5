@@ -1,13 +1,6 @@
-from karaktärer import print_hero, Riddaren, Tjuven, Trollkarlen
+from karaktärer import print_hero
 from strid import Strid
-from karaktärer import hero_choose
 from karta import Board
-
-def starta_karta():
-    b = Board(0)
-    b.size_board()
-    b.starting_pos()
-    b.moving_topos()
 
 
 class Menu:
@@ -54,30 +47,31 @@ class Menu:
         else:
             print("\nYou didn't enter a valid input, try again!")
 
-    def starta_karta(self):
-        b = Board(0)
-        b.size_board()
-        b.starting_pos()
-        b.moving_topos()
+    # def starta_karta(self):
+    #     b = Board(0)
+    #     b.size_board()
+    #     b.starting_pos()
+    #     # b.moving_topos()
 
 
     def new_game(self):
         s = Strid()
+        b = Board(0)
         player_name = self.name_choice()
         print_hero()
         print(Menu.Choice_of_hero)
-        hero_choose()
-        # s.check_hero()
-        # choice2 = self.hero_choice()
-        # self.hero_menu_commands(choice2)
+        s.hero_choose()
+        s.check_hero()
         self.wait_for_user()
-        self.starta_karta()
-        self.strid_huvud_menu()
-        s.bestäm_turordning()
+        b.size_board()
+        b.starting_pos()
+        while True:
+            b.moving_topos()
+            s.bestäm_turordning()
+            # self.cont_game()
 
-    def strid_huvud_menu(self):
-        huvud_meny = '''Du har hamnat i ett rum med monster, vilket leder till en strid. \nDet ska nu bestämmas vem som ska få börja först'''
-        print(huvud_meny)
+    # def cont_game(self):
+    #     Board.moving_topos(self)
 
     # def hero_menu_commands(self):
     #     choice2 = input("Enter your choice 1-3 or b/B: ")

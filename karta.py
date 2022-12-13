@@ -66,7 +66,6 @@ class Board:
                     self.coord_y = j.index(i)
 
     def moving_topos(self):
-        
         self.vart_är_jag()
         move = input("""\n
             Enter Direction:
@@ -99,14 +98,14 @@ class Board:
             print("You can't go outside the map!")
 
 
-def main():
-    b = Board(0)
-    b.size_board()
-    b.starting_pos()
-    b.moving_topos()
+# def main():
+#     b = Board(0)
+#     b.size_board()
+#     b.starting_pos()
+#     b.moving_topos()
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
 
     
