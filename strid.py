@@ -1,15 +1,15 @@
 from random import randint
 import random
 from karaktärer import hero_choose, Riddaren, Tjuven, Trollkarlen
+from karaktärer import Big_Spider, Skeleton, Troll, Orc
 
 
 class Strid:
     def __init__(self):
 
-        self.monster = {'name': 'jättespindel', 'initiativ': 7,
-                        'tålighet': 5, 'atack': 2, 'smidighet': 3}
+        #self.monster = {'name': 'jättespindel', 'initiativ': 7, 'tålighet': 5, 'atack': 2, 'smidighet': 3}
 
-        self.monster_förmågor = [i for i in self.monster.values()]
+        #self.monster_förmågor = [i for i in self.monster.values()]
 
         # self.fighters = ['riddare', 'jättespindel']
 
@@ -21,7 +21,10 @@ class Strid:
         self.heroes_antal_kast = []
         self.monsters_antal_kast = []
 
-        self.monster_liv = self.monster_förmågor[2]
+        self.hero = hero_choose()
+        self.monster = 'Big Spider'
+
+    # self.monster_liv = self.monster_förmågor[2]
 
     def strid_huvud_menu(self):
         huvud_meny = '''Du har hamnat i ett rum med monster, vilket leder till en strid. \nDet ska nu bestämmas vem som ska få börja först'''
@@ -34,13 +37,13 @@ class Strid:
                 self.hero_role_dice(self.heroes_kast)
                 self.heroes_antal_kast.append(self.heroes_kast)
             self.heroes_kast = sum(self.heroes_antal_kast)
-            print(self.heroes_kast)
+            print(f'{self.hero.name}: {self.heroes_kast}')
             self.heroes_antal_kast.clear()
-            for x in range(self.monster_förmågor[1]):
+            for x in range(self.monster.initiativ):
                 self.monster_role_dice(self.monsters_kast)
                 self.monsters_antal_kast.append(self.monsters_kast)
             self.monsters_kast = sum(self.monsters_antal_kast)
-            print(self.monsters_kast)
+            print(f'{self.monster.name}: {self.monsters_kast}')
             self.monsters_antal_kast.clear()
             if self.heroes_kast > self.monsters_kast:
                 self.hero_choise()
@@ -55,19 +58,34 @@ class Strid:
         self.monsters_kast = randint(1, 6)
         print(f'Monster har slagit: {self.monsters_kast}')
 
-    # def check_monster(self):
-    #    if self.monster == class Jättespindel:
+    def check_monster(self):
+#        self.monster = 'Big Spider'
+        if self.monster == 'Big Spider':
+            self.monster = Big_Spider()
+
+        elif self.monster == 'Skeleton':
+            self.monster = Skeleton()
+
+        elif self.monster == 'Orc':
+            self.monster = Orc()
+
+        elif self.monster == 'Troll':
+            self.monster = Troll()
+
 
     def check_hero(self):
-        self.hero = hero_choose()
+
         if self.hero == 'Riddaren':
             self.hero = Riddaren()
+            self.check_monster()
             self.bestäm_turordning()
         elif self.hero == 'Tjuven':
             self.hero = Tjuven()
+            self.check_monster()
             self.bestäm_turordning()
         elif self.hero == 'Trollkarlen':
             self.hero = Trollkarlen()
+            self.check_monster()
             self.bestäm_turordning()
 
     def heroes_atack(self):
@@ -81,7 +99,7 @@ class Strid:
         print(f'{self.hero.name}: {self.heroes_kast}')
 
         print('Monster kastar tärningar')
-        for x in range(self.monster_förmågor[4]):
+        for x in range(self.monster.smidighet):
             self.monster_role_dice(self.monsters_kast)
             self.monsters_antal_kast.append(self.monsters_kast)
         self.monsters_kast = sum(self.monsters_antal_kast)
@@ -89,21 +107,21 @@ class Strid:
         print(f'Monster: {self.monsters_kast}')
 
         if self.heroes_kast > self.monsters_kast:
-            self.monster_liv = self.monster_liv - 1
-            print(f'Monster har {self.monster_liv} liv kvar')
-            if self.monster_liv <= 0:
-                self.monster.clear()
-                print('Jättespindel dog')
+            self.monster.tålighet = self.monster.tålighet - 1
+            print(f'Monster har {self.monster.tålighet} liv kvar')
+            if self.monster.tålighet <= 0:
+
+                print(f'{self.monster.name} dog')
             else:
                 self.monster_atack()
         else:
             self.monster_atack()
 
     def monster_atack(self):
-        self.heros_liv = self.hero.tålighet
+#        self.heros_liv = self.hero.tålighet
         print('Monster försöker attackera')
         print('Monster kastar tärningar')
-        for x in range(self.monster_förmågor[3]):
+        for x in range(self.monster.attack):
             self.monster_role_dice(self.monsters_kast)
             self.monsters_antal_kast.append(self.monsters_kast)
         self.monsters_kast = sum(self.monsters_antal_kast)
@@ -132,13 +150,10 @@ class Strid:
                 else:
                     self.hero_choise()
         elif self.monsters_kast < self.heroes_kast:
-            if self.hero.name == 'Riddaren' and self.monster_antal_atack == 0:
-                print('Riddaren använder sin speciella förmåga, attacken blockerad')
+                print(f'{self.hero.name} blockerar attacken')
                 self.monster_antal_atack += 1
                 self.hero_choise()
-            else:
-                self.monster_antal_atack += 1
-                self.hero_choise()
+
 
     def hero_choise(self):
         hero_choise_menu = '''Välj mellan följande:
@@ -148,7 +163,11 @@ class Strid:
         if hero_choice == '1':
             self.heroes_atack()
         elif hero_choice == '2':
-            self.hero_tries_to_fly
+            self.hero_tries_to_fly()
+            if self.hero_tries_to_fly() is True:
+                print(f'Hero har lyckats')
+            elif self.hero_tries_to_fly() is False:
+                print(f'Hero har misslyckats')
 
 #    def strid_loop(self):
 #       while self.fighters > 1:
@@ -157,16 +176,13 @@ class Strid:
         procent = self.hero.smidighet * 10
         procent = procent/100
         return random.random() <= procent
-    if hero_tries_to_fly() is True:
-        print(f'Hero har lyckats')
-    elif hero_tries_to_fly() is True:
-        print(f'Hero har misslyckats')
 
 
-# def main():
-#     foo = Strid()
-#     foo.huvud_menu()
-
-
-# if __name__ == '__main__':
-#     main()
+#
+#def main():
+#    foo = Strid()
+#    foo.huvud_menu()
+#
+#
+#if __name__ == '__main__':
+#   main()

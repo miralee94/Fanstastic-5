@@ -33,15 +33,15 @@ import random
 
 # print(hero_choose())
 
-#def bla():
-#    smidighet = 4
-#    procent = smidighet * 10
-#    procent = procent/100
-#    return random.random() <= procent
-#if bla() is True:
-#    print('Hero lyckats')
-#elif bla() is False:
-#    print('Hero misslyckats')
-#
-#
-#bla()
+def bla():
+    smidighet = 4
+    procent = smidighet * 10
+    procent = procent/100
+    return random.random() <= procent
+if bla() is True:
+    print('Hero lyckats')
+elif bla() is False:
+    print('Hero misslyckats')
+
+
+bla()
