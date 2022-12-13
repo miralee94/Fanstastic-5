@@ -1,4 +1,5 @@
 from random import randint
+import random
 from karaktärer import hero_choose, Riddaren, Tjuven, Trollkarlen
 
 
@@ -146,14 +147,20 @@ class Strid:
         hero_choice = input(hero_choise_menu)
         if hero_choice == '1':
             self.heroes_atack()
-#        elif hero_choice == '2':
-#            self.hero_tries_to_fly
+        elif hero_choice == '2':
+            self.hero_tries_to_fly
 
 #    def strid_loop(self):
 #       while self.fighters > 1:
 
     def hero_tries_to_fly(self):
-        pass
+        procent = self.hero.smidighet * 10
+        procent = procent/100
+        return random.random() <= procent
+    if hero_tries_to_fly() is True:
+        print(f'Hero har lyckats')
+    elif hero_tries_to_fly() is True:
+        print(f'Hero har misslyckats')
 
 
 # def main():

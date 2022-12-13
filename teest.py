@@ -1,5 +1,5 @@
 from karaktärer import Riddaren, Trollkarlen, Tjuven
-
+import random
 # char_stats = {}
 
 # char = Riddaren()
@@ -15,8 +15,8 @@ from karaktärer import Riddaren, Trollkarlen, Tjuven
 
 # print(type(heros_liv))
 
-r = Riddaren()
-print(r.tålighet)
+#r = Riddaren()
+#print(r.tålighet)
 
 # def hero_choose():
 #     choice2 = input("Enter your choice 1-3")
@@ -32,3 +32,16 @@ print(r.tålighet)
 
 
 # print(hero_choose())
+
+#def bla():
+#    smidighet = 4
+#    procent = smidighet * 10
+#    procent = procent/100
+#    return random.random() <= procent
+#if bla() is True:
+#    print('Hero lyckats')
+#elif bla() is False:
+#    print('Hero misslyckats')
+#
+#
+#bla()
