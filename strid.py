@@ -30,25 +30,29 @@ class Strid:
         huvud_meny = '''Du har hamnat i ett rum med monster, vilket leder till en strid. \nDet ska nu bestämmas vem som ska få börja först'''
         print(huvud_meny)
 
+
     def bestäm_turordning(self):
         self.strid_huvud_menu()
         while self.heroes_kast == self.monsters_kast:
-            for x in range(self.hero.initiativ):
-                self.hero_role_dice(self.heroes_kast)
-                self.heroes_antal_kast.append(self.heroes_kast)
-            self.heroes_kast = sum(self.heroes_antal_kast)
-            print(f'{self.hero.name}: {self.heroes_kast}')
-            self.heroes_antal_kast.clear()
-            for x in range(self.monster.initiativ):
-                self.monster_role_dice(self.monsters_kast)
-                self.monsters_antal_kast.append(self.monsters_kast)
-            self.monsters_kast = sum(self.monsters_antal_kast)
-            print(f'{self.monster.name}: {self.monsters_kast}')
-            self.monsters_antal_kast.clear()
-            if self.heroes_kast > self.monsters_kast:
-                self.hero_choise()
-            elif self.heroes_kast < self.monsters_kast:
-                self.monster_atack()
+            if self.monster.tålighet > 0:
+                for x in range(self.hero.initiativ):
+                    self.hero_role_dice(self.heroes_kast)
+                    self.heroes_antal_kast.append(self.heroes_kast)
+                self.heroes_kast = sum(self.heroes_antal_kast)
+                print(f'{self.hero.name}: {self.heroes_kast}')
+                self.heroes_antal_kast.clear()
+                for x in range(self.monster.initiativ):
+                    self.monster_role_dice(self.monsters_kast)
+                    self.monsters_antal_kast.append(self.monsters_kast)
+                self.monsters_kast = sum(self.monsters_antal_kast)
+                print(f'Monster har slagit: {self.monsters_kast}')
+                self.monsters_antal_kast.clear()
+                if self.heroes_kast > self.monsters_kast:
+                    self.hero_choise()
+                elif self.heroes_kast < self.monsters_kast:
+                    self.monster_atack()
+            else:
+                break
 
     def hero_role_dice(self, heroes_kast):
         self.heroes_kast = randint(1, 6)
@@ -112,6 +116,9 @@ class Strid:
             if self.monster.tålighet <= 0:
 
                 print(f'{self.monster.name} dog')
+                self.heroes_kast = 0
+                self.monsters_kast = 0
+
             else:
                 self.monster_atack()
         else:
@@ -147,6 +154,9 @@ class Strid:
                 print(f'{self.hero.name} har {self.hero.tålighet} liv kvar')
                 if self.hero.tålighet <= 0:
                     print(f'{self.hero.name} dog')
+                    self.heroes_kast = 0
+                    self.monsters_kast = 0
+
                 else:
                     self.hero_choise()
         elif self.monsters_kast < self.heroes_kast:
