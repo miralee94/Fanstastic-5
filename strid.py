@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, random
 from karaktärer import Riddaren, Tjuven, Trollkarlen
 
 
@@ -45,7 +45,7 @@ class Strid:
                 if self.heroes_roll > self.monsters_roll:
                     self.hero_choise()
                 elif self.heroes_roll < self.monsters_roll:
-                    self.monster_atack()
+                    self.monster_attack()
             else:
                 break
 
@@ -82,7 +82,7 @@ class Strid:
             self.hero = Trollkarlen()
             self.turn_order()
 
-    def heroes_atack(self):
+    def heroes_attack(self):
         print(f'{self.hero.name} tries to attack')
         print(f'{self.hero.name} Hero roll dice')
         for x in range(self.hero.attack):
@@ -109,12 +109,12 @@ class Strid:
                 self.heroes_roll = 0
                 self.monsters_roll = 0
             else:
-                self.monster_atack()
+                self.monster_attack()
         else:
             print(f'{self.hero.name} missed the attack')
-            self.monster_atack()
+            self.monster_attack()
 
-    def monster_atack(self):
+    def monster_attack(self):
         self.heros_liv = self.hero.life
         print('Monster tries to attack')
         print('Monster roll dice')
@@ -166,22 +166,19 @@ class Strid:
 2. Try to escape\n'''
         hero_choice = input(hero_choise_menu)
         if hero_choice == '1':
-            self.heroes_atack()
+            self.heroes_attack()
         elif hero_choice == '2':
-            self.hero_tries_to_fly
+            self.hero_try_escape()
+            if self.hero_try_escape() is True:
+                print(f'{self.hero.name} escaped')
+            elif self.hero_try_escape() is False:
+                print(f'{self.hero.name} failed to escape')
+                self.monster_attack()
 
-#    def strid_loop(self):
-#       while self.fighters > 1:
-
-    # def hero_tries_to_fly(self):
-    #     procent = self.hero.smidighet * 10
-    #     procent = procent/100
-    #     return random.random() <= procent
-    # if hero_tries_to_fly() is True:
-    #     print(f'Hero har lyckats')
-    # elif hero_tries_to_fly() is True:
-    #     print(f'Hero har misslyckats')
-
+    def hero_try_escape(self):
+        procent = self.hero.agility * 10
+        procent = procent/100
+        return random() <= procent
 
 # def main():
 #     foo = Strid()
