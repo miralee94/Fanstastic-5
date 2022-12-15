@@ -1,5 +1,4 @@
 from karaktärer import print_hero
-from strid import Strid
 from karta import Board
 
 
@@ -49,13 +48,12 @@ class Menu:
             print("\nYou didn't enter a valid input, try again!")
 
     def new_game(self):
-        s = Strid()
         b = Board(0)
         player_name = self.name_choice()
         print_hero()
         print(Menu.Choice_of_hero)
-        s.hero_choose()
-        s.check_hero()
+        b.hero_choose()
+        b.check_hero()
         b.size_board()
         b.starting_pos()
         while True:

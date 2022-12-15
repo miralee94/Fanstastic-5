@@ -6,13 +6,6 @@ from karta import Board
 class Strid:
     def __init__(self):
 
-        # self.monster = {'name': 'jättespindel', 'initiativ': 7,
-        #                 'tålighet': 5, 'attack': 2, 'smidighet': 3}
-
-        # self.monster_abilitys = [i for i in self.monster.values()]
-
-        # self.fighters = ['riddare', 'jättespindel']
-
         self.heroes_roll = 0
         self.monsters_roll = 0
 
@@ -20,9 +13,6 @@ class Strid:
 
         self.heroes_total_roll = []
         self.monsters_total_roll = []
-
-        # self.monster_life = self.monster_abilitys[2]
-        # self.monster_life = self.monster.life
 
     def battle_main_menu(self):
         main_menu = '''You have ended up in a room with monsters, which leads to a battle. \nIt will now be decided who will get to start first\n'''
