@@ -107,7 +107,25 @@ class Board:
                 print(self.my_board)
                 self.create_a_room()
         except IndexError:
-            print("You can't go outside the map!")
+            self.subMenu_Exit()
+            self.subMenu_Exit_choices()
+
+    def subMenu_Exit(self):
+        SUB_MENU_TEXT = """
+            You have gone outside the map...
+            1. Do you want to keep playing?
+            2. Do you want to exit?
+            """
+        print(SUB_MENU_TEXT)
+
+    def subMenu_Exit_choices(self):
+        subMenuChoice = int(input("Select an option: "))
+        if subMenuChoice == 1:
+            self.moving_topos()
+        elif subMenuChoice == 2:
+            pass  # Koppla Charalampos spara funktion
+        else:
+            print("You did not select a valid option, try again.")
 
     def create_a_room(self):
         self.shuffle_monster()
