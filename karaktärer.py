@@ -107,28 +107,12 @@ def print_stats(character):
     print(f"Life: {character.life}")
     print(f"Attack: {character.attack}")
     print(f"Agility: {character.agility}\n")
-    # print("")
 
 
 def print_hero():
     print_stats(character=Riddaren())
     print_stats(character=Trollkarlen())
     print_stats(character=Tjuven())
-
-
-# def hero_choose():
-#     choice2 = input("Enter your choice 1-3 or b/B: ")
-#     # if choice2 == "b" or choice2 == "B":
-#     #     self.start_loop()
-#     if choice2 == "1":
-#         hero = 'Riddaren'
-#     elif choice2 == "2":
-#         hero = 'Trollkarlen'
-#     elif choice2 == "3":
-#         hero = 'Tjuven'
-#     else:
-#         print("\nYou didn't enter a valid input, try again!")
-#     return hero
 
 
 if __name__ == "__main__":

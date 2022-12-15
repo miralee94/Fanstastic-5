@@ -26,7 +26,7 @@ class Strid:
         main_menu = '''You have ended up in a room with monsters, which leads to a battle. \nIt will now be decided who will get to start first\n'''
         print(main_menu)
 
-    def turn_order(self):
+    def turn_order(self, monster):
         self.battle_main_menu()
         while self.heroes_roll == self.monsters_roll:
             if self.monster_life > 0:

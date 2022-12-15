@@ -62,16 +62,6 @@ class Menu:
             b.moving_topos()
             s.turn_order()
 
-    # def new_game(self):
-    #     s = Strid()
-    #     player_name = self.name_choice()
-    #     print("")
-    #     print_hero()
-    #     print(Menu.Choice_of_hero)
-    #     s.hero_choose()
-    #     s.check_hero()
-    #     # self.wait_for_user()
-
     def start_loop(self):
         self.running = True
         while self.running:

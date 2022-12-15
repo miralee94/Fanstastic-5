@@ -1,6 +1,6 @@
-from skatter import *
-from karaktärer import *
-from strid import *
+from skatter import Lösa_slantar, Pengapung, Guldsmycket, Ädelsten, Liten_skattkista
+from karaktärer import Big_Spider, Skeleton, Orc, Troll
+from strid import Strid
 
 
 class Board:
@@ -14,6 +14,8 @@ class Board:
         self.coord_y = 0
         self.monster = False
         self.treasure = False
+        self.s = Strid()
+        self.c = Character()
 
     def __str__(self):
         # This method is called when the object is printed,
@@ -72,43 +74,6 @@ class Board:
                     self.coord_x = self.my_board.cells.index(j)
                     self.coord_y = j.index(i)
 
-    # def moving_topos(self):
-    #     while True:
-    #         self.vart_är_jag()
-    #         self.move = input("""\n
-    #                 Enter Direction:
-    #                 1. Left
-    #                 2. Right
-    #                 3. Up
-    #                 4. Down \n""")
-    #         try:
-    #             if self.move == "1":
-    #                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
-    #                 self.my_board.set_cell(
-    #                     self.coord_x, (self.coord_y - 1), 'H')
-    #                 print(self.my_board)
-    #                 self.create_a_room()
-    #                 # self.insert_monster_to_room()
-    #             elif self.move == "2":
-    #                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
-    #                 self.my_board.set_cell(
-    #                     self.coord_x, (self.coord_y + 1), 'H')
-    #                 print(self.my_board)
-    #                 self.create_a_room()
-    #             elif self.move == "3":
-    #                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
-    #                 self.my_board.set_cell(
-    #                     (self.coord_x - 1), self.coord_y, 'H')
-    #                 print(self.my_board)
-    #                 self.create_a_room()
-    #             elif self.move == "4":
-    #                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
-    #                 self.my_board.set_cell(
-    #                     (self.coord_x + 1), self.coord_y, 'H')
-    #                 print(self.my_board)
-    #                 self.create_a_room()
-    #         except IndexError:
-    #             print("You can't go outside the map!")
     def moving_topos(self):
         self.vart_är_jag()
         move = input("""\n
@@ -123,21 +88,25 @@ class Board:
                 self.my_board.set_cell(
                     self.coord_x, (self.coord_y - 1), 'H')
                 print(self.my_board)
+                self.create_a_room()
             elif move == "2":
                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
                 self.my_board.set_cell(
                     self.coord_x, (self.coord_y + 1), 'H')
                 print(self.my_board)
+                self.create_a_room()
             elif move == "3":
                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
                 self.my_board.set_cell(
                     (self.coord_x - 1), self.coord_y, 'H')
                 print(self.my_board)
+                self.create_a_room()
             elif move == "4":
                 self.my_board.set_cell((self.coord_x), self.coord_y, "X")
                 self.my_board.set_cell(
                     (self.coord_x + 1), self.coord_y, 'H')
                 print(self.my_board)
+                self.create_a_room()
         except IndexError:
             print("You can't go outside the map!")
 
@@ -199,8 +168,9 @@ class Board:
         spider = Big_Spider()
         spider.chance_of_appearance()
         if spider.chance_of_appearance() is True:
-            self.monster is True
+            self.monster = spider
             print('Big spider finns i rummet')
+            self.s.turn_order(self.monster)
         else:
             pass
 
@@ -209,6 +179,7 @@ class Board:
         if skeleton.chance_of_appearance() is True:
             self.monster is True
             print('Skeleton finns i rummet')
+            self.s.turn_order(self.monster)
         else:
             pass
 
@@ -233,7 +204,8 @@ def main():
     b = Board(0)
     b.size_board()
     b.starting_pos()
-    b.moving_topos()
+    while True:
+        b.moving_topos()
 
 
 if __name__ == '__main__':
