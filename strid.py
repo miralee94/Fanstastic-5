@@ -1,14 +1,15 @@
 from random import randint, random
-from karaktärer import Riddaren, Tjuven, Trollkarlen
+from karaktärer import Riddaren, Tjuven, Trollkarlen, Big_Spider, Skeleton, Orc, Troll
+from karta import Board
 
 
 class Strid:
     def __init__(self):
 
-        self.monster = {'name': 'jättespindel', 'initiativ': 7,
-                        'tålighet': 5, 'attack': 2, 'smidighet': 3}
+        # self.monster = {'name': 'jättespindel', 'initiativ': 7,
+        #                 'tålighet': 5, 'attack': 2, 'smidighet': 3}
 
-        self.monster_abilitys = [i for i in self.monster.values()]
+        # self.monster_abilitys = [i for i in self.monster.values()]
 
         # self.fighters = ['riddare', 'jättespindel']
 
@@ -20,23 +21,24 @@ class Strid:
         self.heroes_total_roll = []
         self.monsters_total_roll = []
 
-        self.monster_life = self.monster_abilitys[2]
+        # self.monster_life = self.monster_abilitys[2]
+        # self.monster_life = self.monster.life
 
     def battle_main_menu(self):
         main_menu = '''You have ended up in a room with monsters, which leads to a battle. \nIt will now be decided who will get to start first\n'''
         print(main_menu)
 
-    def turn_order(self, monster):
+    def turn_order(self):
         self.battle_main_menu()
         while self.heroes_roll == self.monsters_roll:
-            if self.monster_life > 0:
+            if self.monster.life > 0:
                 for x in range(self.hero.initiative):
                     self.hero_role_dice(self.heroes_roll)
                     self.heroes_total_roll.append(self.heroes_roll)
                 self.heroes_roll = sum(self.heroes_total_roll)
                 print(f'{self.hero.name} total roll: {self.heroes_roll}\n')
                 self.heroes_total_roll.clear()
-                for x in range(self.monster_abilitys[1]):
+                for x in range(self.monster.initiative):
                     self.monster_role_dice(self.monsters_roll)
                     self.monsters_total_roll.append(self.monsters_roll)
                 self.monsters_roll = sum(self.monsters_total_roll)
@@ -57,8 +59,17 @@ class Strid:
         self.monsters_roll = randint(1, 6)
         print(f'Monster roll: {self.monsters_roll}')
 
-    # def check_monster(self):
-    #    if self.monster == class Jättespindel:
+    def check_monster(self):
+        b = Board(0)
+        monster = b.monsters
+        if monster == 'spider':
+            self.monster = Big_Spider()
+        elif monster == 'skeleton':
+            self.monster = Skeleton()
+        elif monster == 'orc':
+            self.monster = Orc()
+        elif monster == 'troll':
+            self.monster = Troll()
 
     def hero_choose(self):
         choice2 = input("Enter your choice 1-3: ")

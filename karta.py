@@ -1,6 +1,6 @@
 from skatter import Lösa_slantar, Pengapung, Guldsmycket, Ädelsten, Liten_skattkista
 from karaktärer import Big_Spider, Skeleton, Orc, Troll
-from strid import Strid
+# from strid import Strid
 
 
 class Board:
@@ -12,10 +12,9 @@ class Board:
                       for j in range(self.size)]
         self.coord_x = 0
         self.coord_y = 0
-        self.monster = False
+        # self.monster = False
         self.treasure = False
-        self.s = Strid()
-        self.c = Character()
+        # self.s = Strid()
 
     def __str__(self):
         # This method is called when the object is printed,
@@ -110,15 +109,6 @@ class Board:
         except IndexError:
             print("You can't go outside the map!")
 
-    # def insert_treasure_to_room(self):
-    #    if self.move == "1":
-    #        monster = Big_Spider()
-    #        skatt = Lösa_slantar()
-    #        if monster.monster_appears() == True:
-    #            skatt.treasure_appears() == False
-    #        else:
-    #            skatt.treasure_appears() == True
-
     def create_a_room(self):
         self.shuffle_monster()
         self.shuffle_treasure()
@@ -168,25 +158,23 @@ class Board:
         spider = Big_Spider()
         spider.chance_of_appearance()
         if spider.chance_of_appearance() is True:
-            self.monster = spider
+            self.monster = 'spider'
             print('Big spider finns i rummet')
-            self.s.turn_order(self.monster)
         else:
             pass
 
         skeleton = Skeleton()
         skeleton.chance_of_appearance()
         if skeleton.chance_of_appearance() is True:
-            self.monster is True
+            self.monster = 'skeleton'
             print('Skeleton finns i rummet')
-            self.s.turn_order(self.monster)
         else:
             pass
 
         troll = Troll()
         troll.chance_of_appearance()
         if troll.chance_of_appearance() is True:
-            self.monster is True
+            self.monster = 'troll'
             print('Troll finns i rummet')
         else:
             pass
@@ -194,10 +182,13 @@ class Board:
         orc = Orc()
         orc.chance_of_appearance()
         if orc.chance_of_appearance() is True:
-            self.monster is True
+            self.monster = 'orc'
             print('Orc finns i rummet')
         else:
             pass
+
+    def monsters(self):
+        return self.monster
 
 
 def main():
@@ -206,6 +197,7 @@ def main():
     b.starting_pos()
     while True:
         b.moving_topos()
+        print(b.monsters())
 
 
 if __name__ == '__main__':

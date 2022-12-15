@@ -60,7 +60,7 @@ class Menu:
         b.starting_pos()
         while True:
             b.moving_topos()
-            s.turn_order()
+            # s.turn_order()
 
     def start_loop(self):
         self.running = True
