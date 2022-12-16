@@ -13,7 +13,8 @@ class Board:
                       for j in range(self.size)]
         self.coord_x = 0
         self.coord_y = 0
-        self.treasure = False
+        # self.treasure = False
+        self.points = 0
 
         self.heroes_roll = 0
         self.monsters_roll = 0
@@ -88,6 +89,7 @@ class Board:
 
     def moving_topos(self):
         self.vart_är_jag()
+        print(self.my_board)
         move = input("""\n
 Enter Direction:
 1. Left
@@ -119,6 +121,8 @@ Enter Direction:
                     (self.coord_x + 1), self.coord_y, 'H')
                 print(self.my_board)
                 self.create_a_room()
+            else:
+                print("Try again!")
         except IndexError:
             self.subMenu_Exit()
             self.subMenu_Exit_choices()
@@ -150,6 +154,8 @@ Enter Direction:
         if slantar.chance_of_appearance() is True:
             self.treasure = slantar.värde
             print(f'You found Lösa Slantar that is worth: {slantar.värde}')
+            self.points = self.points + slantar.värde
+            print(f'You have total of points: {self.points}')
         else:
             pass
 
@@ -158,6 +164,8 @@ Enter Direction:
         if pengapung.chance_of_appearance() is True:
             self.treasure = slantar.värde
             print(f'You found Pengapung that is worth: {pengapung.värde}')
+            self.points = self.points + pengapung.värde
+            print(f'You have total of points: {self.points}')
         else:
             pass
 
@@ -166,6 +174,8 @@ Enter Direction:
         if guldsmycket.chance_of_appearance() is True:
             self.treasure = slantar.värde
             print(f'You found Guldsmycke that is worth: {guldsmycket.värde}')
+            self.points = self.points + guldsmycket.värde
+            print(f'You have total of points: {self.points}')
         else:
             pass
 
@@ -174,6 +184,8 @@ Enter Direction:
         if ädelsten.chance_of_appearance() is True:
             self.treasure = slantar.värde
             print(f'You found Ädelsten that is worth: {ädelsten.värde}')
+            self.points = self.points + ädelsten.värde
+            print(f'You have total of points: {self.points}')
         else:
             pass
 
@@ -183,6 +195,8 @@ Enter Direction:
             self.treasure = slantar.värde
             print(
                 f'You found Liten skattkista that is worth: {liten_kista.värde}')
+            self.points = self.points + liten_kista.värde
+            print(f'You have total of points: {self.points}')
         else:
             pass
 
@@ -307,6 +321,7 @@ Enter Direction:
                 self.monster_attack()
         else:
             print(f'{self.hero.name} missed the attack\n')
+            self.wait_for_user()
             self.monster_attack()
 
     def monster_attack(self):
