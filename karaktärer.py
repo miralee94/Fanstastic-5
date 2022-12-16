@@ -61,7 +61,14 @@ class Tjuven(Character):
         self.tjuv_skill = "Kritisk träff"
         self.name = "The Thief"
 
-    # def use_skill(self):
+    def use_skill(self):
+        oddsen = random.random() <= 0.25
+        if oddsen is True:
+            return f'Tjuven använde sin {self.tjuv_skill} och lyckas göra dubbel damage'
+        elif oddsen is False:
+            return f'Tjuven använde sin {self.tjuv_skill} men misslyckas att göra dubbel damage'
+
+
     #     if random.random() <= 0.25:
     #         print(
     #             f"Tjuven försöker träffa en {self.tjuv_skill} och lyckas! Attacken gör dubbel mängd skada!")

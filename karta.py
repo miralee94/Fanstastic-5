@@ -295,6 +295,7 @@ Enter Direction:
     def heroes_attack(self):
         print(f'{self.hero.name} tries to attack')
         print(f'{self.hero.name} Hero roll dice')
+
         for x in range(self.hero.attack):
             self.hero_role_dice(self.heroes_roll)
             self.heroes_total_roll.append(self.heroes_roll)
@@ -311,6 +312,11 @@ Enter Direction:
         print(f'{self.monster.name} total roll: {self.monsters_roll}\n')
 
         if self.heroes_roll > self.monsters_roll:
+            if self.hero.name == 'The Thief':
+                skill = self.hero.use_skill()
+                print(skill)
+                if skill == f'Tjuven använde sin {self.hero.tjuv_skill} och lyckas göra dubbel damage':
+                    self.monster.life = self.monster.life - 1
             print(f'{self.hero.name} attacks')
             self.monster.life = self.monster.life - 1
             print(f'{self.monster.name} has {self.monster.life} life left\n')
@@ -378,8 +384,10 @@ Enter Direction:
         elif hero_choice == '2':
          #self.hero_try_escape()
             if self.hero.name == 'The Wizard':
-                print(self.hero.use_skill())
-                self.gå_tillbaka()
+                skill = self.hero.use_skill()
+                print(skill)
+                if skill == f"Trollkarlen använde {self.hero.trollkarl_skill} och lyckades fly!":
+                    self.gå_tillbaka()
             elif self.hero_try_escape() is True:
                 self.heroes_roll = 0
                 self.monsters_roll = 0
