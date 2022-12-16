@@ -110,6 +110,7 @@ def print_stats(character):
 
 
 def print_hero():
+    print("")
     print_stats(character=Riddaren())
     print_stats(character=Trollkarlen())
     print_stats(character=Tjuven())

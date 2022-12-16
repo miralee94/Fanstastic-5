@@ -5,36 +5,24 @@ from karta import Board
 class Menu:
 
     MAIN_MENU_TEXT = """
-            Welcome!
-    1. Start a new game
-    2. Load game
+    Welcome!
+1. Start a new game
+2. Load game
 
-    Type q or Q to exit the program
-    """
+Type q or Q to exit the program"""
 
     Choice_of_hero = """
-        Choose your hero!
-    1. The Knight
-    2. The Wizard
-    3. The Thief
-    Type b or B to go back to the main menu
-    """
+    Choose your hero!
+1. The Knight
+2. The Wizard
+3. The Thief
+Type b or B to go back to the main menu"""
 
     def user_choice(self):
         return input("Enter your choice 1-2 or q/Q: ")
 
-    # def hero_choice(self):
-    #     return input("Enter your choice 1-3 or b/B: ")
-
-    def map_choice(self):
-        return input("Enter your choice 1 or b/B: ")
-
     def name_choice(self):
         return input("Please enter the player name: ")
-
-    def wait_for_user(self):
-        if self.running:
-            input("\nPlease press any key to continue.")
 
     def menu_commands(self, choice):
         if choice == "q" or choice == "Q":
@@ -58,7 +46,6 @@ class Menu:
         b.starting_pos()
         while True:
             b.moving_topos()
-            # s.turn_order()
 
     def start_loop(self):
         self.running = True
