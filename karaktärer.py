@@ -16,8 +16,13 @@ class Riddaren(Character):
         self.riddare_skill = "Sköldblock"
         self.block_chans = True
 
-    # def use_skill(self):
-    #     if self.block_chans:
+    def use_skill(self):
+        oddsen = random.random() <= 0.50
+        if oddsen is True:
+            return f"Riddaren använder {self.riddare_skill} och blockar attacken."
+        elif oddsen is False:
+            return f"Riddaren använder {self.riddare_skill} men misslyckas att blockera attacken."
+             #     if self.block_chans:
     #         print(
     #             f"Riddaren använder {self.riddare_skill} och blockar attacken.")
     #         self.block_chans = False
@@ -63,7 +68,7 @@ class Tjuven(Character):
 
 class Big_Spider(Character):
     def __init__(self):
-        super().__init__(7, 1, 2, 3)
+        super().__init__(7, 10, 10, 3)
         self.name = "Big Spider"
 
     @classmethod
