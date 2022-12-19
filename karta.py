@@ -1,4 +1,4 @@
-from skatter import Lösa_slantar, Pengapung, Guldsmycket, Ädelsten, Liten_skattkista
+from treasure import Lösa_slantar, Pengapung, Guldsmycket, Ädelsten, Liten_skattkista
 from random import randint, random
 from karaktärer import Riddaren, Tjuven, Trollkarlen, Big_Spider, Skeleton, Orc, Troll
 import os
@@ -382,12 +382,16 @@ Enter Direction:
         if hero_choice == '1':
             self.heroes_attack()
         elif hero_choice == '2':
-         #self.hero_try_escape()
+        #self.hero_try_escape()
             if self.hero.name == 'The Wizard':
                 skill = self.hero.use_skill()
                 print(skill)
                 if skill == f"Trollkarlen använde {self.hero.trollkarl_skill} och lyckades fly!":
+                    self.heroes_roll = 0
+                    self.monsters_roll = 0
                     self.gå_tillbaka()
+                else:
+                    self.monster_attack()
             elif self.hero_try_escape() is True:
                 self.heroes_roll = 0
                 self.monsters_roll = 0
