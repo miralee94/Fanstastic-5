@@ -1,4 +1,4 @@
-from skatter import Lösa_slantar, Pengapung, Guldsmycket, Ädelsten, Liten_skattkista
+from treasure import Lösa_slantar, Pengapung, Guldsmycket, Ädelsten, Liten_skattkista
 from random import randint, random
 from karaktärer import Riddaren, Tjuven, Trollkarlen, Big_Spider, Skeleton, Orc, Troll
 import os
@@ -67,19 +67,15 @@ class Board:
         if pos == "1":
             self.my_board.set_cell(0, 0, "H")
             os.system('cls')
-            # print(f'\n{self.my_board}')
         elif pos == "2":
             self.my_board.set_cell(0, self.size - 1, "H")
             os.system('cls')
-            # print(f'\n{self.my_board}')
         elif pos == "3":
             self.my_board.set_cell(self.size - 1, 0, "H")
             os.system('cls')
-            # print(f'\n{self.my_board}')
         elif pos == "4":
             self.my_board.set_cell(self.size - 1, self.size - 1, "H")
             os.system('cls')
-            # print(f'\n{self.my_board}')
         else:
             print("Try again!")
 
@@ -343,6 +339,7 @@ Enter Direction:
                 print(f'{self.monster.name} died\n')
                 self.heroes_roll = 0
                 self.monsters_roll = 0
+                self.monster_träff = 0
             else:
                 self.monster_attack()
         else:
@@ -371,10 +368,8 @@ Enter Direction:
 
         if self.monsters_roll > self.heroes_roll:
             if self.hero.name == 'The Knight' and self.monster_träff == 0:
+                print(self.hero.use_skill())
                 self.monster_träff = self.monster_träff + 1
-                self.hero.use_skill()
-                print(
-                    'Riddaren använder sin speciella förmåga, attacken blockerad\n')
                 self.hero_choise()
             else:
                 print(f'{self.monster.name} attacks')
@@ -400,10 +395,13 @@ Enter Direction:
         if hero_choice == '1':
             self.heroes_attack()
         elif hero_choice == '2':
+            # self.hero_try_escape()
             if self.hero.name == 'The Wizard':
                 skill = self.hero.use_skill()
                 print(skill)
                 if skill == f"Trollkarlen använde {self.hero.trollkarl_skill} och lyckades fly!":
+                    self.heroes_roll = 0
+                    self.monsters_roll = 0
                     self.gå_tillbaka()
                 else:
                     self.monster_attack()
@@ -433,15 +431,3 @@ Enter Direction:
         procent = self.hero.agility * 10
         procent = procent/100
         return random() <= procent
-
-
-# def main():
-#     b = Board(0)
-#     b.size_board()
-#     b.starting_pos()
-#     while True:
-#         b.moving_topos()
-
-
-# if __name__ == '__main__':
-#     main()
