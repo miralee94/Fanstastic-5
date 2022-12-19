@@ -9,7 +9,8 @@ class Menu:
 1. Start a new game
 2. Load game
 
-Type q or Q to exit the program"""
+Type q or Q to exit the program
+"""
 
     Choice_of_hero = """
     Choose your hero!

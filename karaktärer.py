@@ -17,11 +17,7 @@ class Riddaren(Character):
         self.block_chans = True
 
     def use_skill(self):
-        oddsen = random.random() <= 0.50
-        if oddsen is True:
-            return f"Riddaren använder {self.riddare_skill} och blockar attacken."
-        elif oddsen is False:
-            return f"Riddaren använder {self.riddare_skill} men misslyckas att blockera attacken."
+        return f"Riddaren använder {self.riddare_skill} och blockar attacken."
 
 
 class Trollkarlen(Character):
@@ -30,14 +26,12 @@ class Trollkarlen(Character):
         self.trollkarl_skill = "Ljussken"
         self.name = "The Wizard"
 
-    # def use_skill(self):
-    #     if random.random() <= 0.80:
-    #         print(
-    #             f"Trollkarlen använde {self.trollkarl_skill} och lyckades fly!")
-    #         # Lägg till chans att fly funktion här? Indentera ett steg :)
-    #     else:
-    #         print(
-    #             f"Trollkarlen använde {self.trollkarl_skill} men har misslyckats att fly!")
+    def use_skill(self):
+        oddsen = random.random() <= 0.80
+        if oddsen is True:
+            return f"Trollkarlen använde {self.trollkarl_skill} och lyckades fly!"
+        elif oddsen is False:
+            return f'Trollkarlen använde {self.trollkarl_skill} men misslyckas att fly!'
 
 
 class Tjuven(Character):
@@ -46,13 +40,12 @@ class Tjuven(Character):
         self.tjuv_skill = "Kritisk träff"
         self.name = "The Thief"
 
-    # def use_skill(self):
-    #     if random.random() <= 0.25:
-    #         print(
-    #             f"Tjuven försöker träffa en {self.tjuv_skill} och lyckas! Attacken gör dubbel mängd skada!")
-    #     else:
-    #         print(
-    #             f"Tjuven försöker träffa en {self.tjuv_skill} men misslyckas och missar attacken.")
+    def use_skill(self):
+        oddsen = random.random() <= 0.25
+        if oddsen is True:
+            return f'Tjuven använde sin {self.tjuv_skill} och lyckas göra dubbel damage'
+        elif oddsen is False:
+            return f'Tjuven använde sin {self.tjuv_skill} men misslyckas att göra dubbel damage'
 
 
 class Big_Spider(Character):

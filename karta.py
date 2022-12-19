@@ -13,7 +13,6 @@ class Board:
                       for j in range(self.size)]
         self.coord_x = 0
         self.coord_y = 0
-        # self.treasure = False
         self.points = 0
 
         self.heroes_roll = 0
@@ -23,6 +22,9 @@ class Board:
 
         self.heroes_total_roll = []
         self.monsters_total_roll = []
+
+        self.where_now = []
+        self.besökta_rum = []
 
     def __str__(self):
         # This method is called when the object is printed,
@@ -65,19 +67,19 @@ class Board:
         if pos == "1":
             self.my_board.set_cell(0, 0, "H")
             os.system('cls')
-            print(f'\n{self.my_board}')
+            # print(f'\n{self.my_board}')
         elif pos == "2":
             self.my_board.set_cell(0, self.size - 1, "H")
             os.system('cls')
-            print(f'\n{self.my_board}')
+            # print(f'\n{self.my_board}')
         elif pos == "3":
             self.my_board.set_cell(self.size - 1, 0, "H")
             os.system('cls')
-            print(f'\n{self.my_board}')
+            # print(f'\n{self.my_board}')
         elif pos == "4":
             self.my_board.set_cell(self.size - 1, self.size - 1, "H")
             os.system('cls')
-            print(f'\n{self.my_board}')
+            # print(f'\n{self.my_board}')
         else:
             print("Try again!")
 
@@ -87,6 +89,8 @@ class Board:
                 if i == 'H':
                     self.coord_x = self.my_board.cells.index(j)
                     self.coord_y = j.index(i)
+                    self.where_now.append(self.coord_x)
+                    self.where_now.append(self.coord_y)
 
     def moving_topos(self):
         self.vart_är_jag()
@@ -99,29 +103,45 @@ Enter Direction:
 4. Down \n""")
         try:
             if move == "1":
-                self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+                self.my_board.set_cell(
+                    (self.coord_x), self.coord_y, "X")
+                self.besökta_rum.append(self.coord_x)
+                self.besökta_rum.append(self.coord_y)
                 self.my_board.set_cell(
                     self.coord_x, (self.coord_y - 1), 'H')
                 print(self.my_board)
                 self.create_a_room()
+                self.moving_topos()
             elif move == "2":
-                self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+                self.my_board.set_cell(
+                    (self.coord_x), self.coord_y, "X")
+                self.besökta_rum.append(self.coord_x)
+                self.besökta_rum.append(self.coord_y)
                 self.my_board.set_cell(
                     self.coord_x, (self.coord_y + 1), 'H')
                 print(self.my_board)
                 self.create_a_room()
+                self.moving_topos()
             elif move == "3":
-                self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+                self.my_board.set_cell(
+                    (self.coord_x), self.coord_y, "X")
+                self.besökta_rum.append(self.coord_x)
+                self.besökta_rum.append(self.coord_y)
                 self.my_board.set_cell(
                     (self.coord_x - 1), self.coord_y, 'H')
                 print(self.my_board)
                 self.create_a_room()
+                self.moving_topos()
             elif move == "4":
-                self.my_board.set_cell((self.coord_x), self.coord_y, "X")
+                self.my_board.set_cell(
+                    (self.coord_x), self.coord_y, "X")
+                self.besökta_rum.append(self.coord_x)
+                self.besökta_rum.append(self.coord_y)
                 self.my_board.set_cell(
                     (self.coord_x + 1), self.coord_y, 'H')
                 print(self.my_board)
                 self.create_a_room()
+                self.moving_topos()
             else:
                 print("Try again!")
         except IndexError:
@@ -139,9 +159,9 @@ Enter Direction:
     def subMenu_Exit_choices(self):
         subMenuChoice = int(input("Select an option: "))
         if subMenuChoice == 1:
-            self.moving_topos()
+            self.gå_tillbaka()
         elif subMenuChoice == 2:
-            pass  # Koppla Charalampos spara funktion
+            exit()  # Koppla Charalampos spara funktion
         else:
             print("You did not select a valid option, try again.")
 
@@ -310,6 +330,11 @@ Enter Direction:
         print(f'{self.monster.name} total roll: {self.monsters_roll}\n')
 
         if self.heroes_roll > self.monsters_roll:
+            if self.hero.name == 'The Thief':
+                skill = self.hero.use_skill()
+                print(skill)
+                if skill == f'Tjuven använde sin {self.hero.tjuv_skill} och lyckas göra dubbel damage':
+                    self.monster.life = self.monster.life - 1
             print(f'{self.hero.name} attacks')
             self.monster.life = self.monster.life - 1
             print(f'{self.monster.name} has {self.monster.life} life left\n')
@@ -375,12 +400,34 @@ Enter Direction:
         if hero_choice == '1':
             self.heroes_attack()
         elif hero_choice == '2':
-            self.hero_try_escape()
-            if self.hero_try_escape() is True:
+            if self.hero.name == 'The Wizard':
+                skill = self.hero.use_skill()
+                print(skill)
+                if skill == f"Trollkarlen använde {self.hero.trollkarl_skill} och lyckades fly!":
+                    self.gå_tillbaka()
+                else:
+                    self.monster_attack()
+            elif self.hero_try_escape() is True:
+                self.heroes_roll = 0
+                self.monsters_roll = 0
                 print(f'{self.hero.name} escaped')
-            elif self.hero_try_escape() is False:
+                self.gå_tillbaka()
+            else:
                 print(f'{self.hero.name} failed to escape')
                 self.monster_attack()
+        else:
+            print("Try again!")
+
+    def gå_tillbaka(self):
+        self.vart_är_jag()
+        i = self.where_now[-1]
+        j = self.where_now[-2]
+        x = self.besökta_rum[-1]
+        y = self.besökta_rum[-2]
+        self.my_board.set_cell(j, i, 'X')
+        self.my_board.set_cell(y, x, 'H')
+        print(self.my_board)
+        self.moving_topos()
 
     def hero_try_escape(self):
         procent = self.hero.agility * 10
