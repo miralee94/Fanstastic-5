@@ -4,7 +4,7 @@ import random
 class Skatter:
     def __init__(self, värde, vanlighet):
         self.värde = värde
-        self.vanlighet = vanlighet  # kanske tas bort.
+        self.vanlighet = vanlighet
 
 
 class Lösa_slantar(Skatter):
