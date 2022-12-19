@@ -16,18 +16,12 @@ class Riddaren(Character):
         self.riddare_skill = "Sköldblock"
         self.block_chans = True
 
-    # def use_skill(self):
-    #     if self.block_chans:
-    #         print(
-    #             f"Riddaren använder {self.riddare_skill} och blockar attacken.")
-    #         self.block_chans = False
-    #     elif random.random() <= 0.50:
-    #         print(
-    #             f"Riddaren använder {self.riddare_skill} och blockar attacken.")
-    #         self.block_chans = False
-    #     else:
-    #         print(
-    #             f"Riddaren använder {self.riddare_skill} och misslyckas med att blockera attacken.")
+    def use_skill(self):
+        oddsen = random.random() <= 0.50
+        if oddsen is True:
+            return f"Riddaren använder {self.riddare_skill} och blockar attacken."
+        elif oddsen is False:
+            return f"Riddaren använder {self.riddare_skill} men misslyckas att blockera attacken."
 
 
 class Trollkarlen(Character):

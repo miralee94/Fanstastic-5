@@ -18,7 +18,8 @@ class Board:
 
         self.heroes_roll = 0
         self.monsters_roll = 0
-        self.monster_total_attack = 0
+
+        self.monster_träff = 0
 
         self.heroes_total_roll = []
         self.monsters_total_roll = []
@@ -344,10 +345,11 @@ Enter Direction:
         print(f'{self.hero.name} total roll: {self.heroes_roll}\n')
 
         if self.monsters_roll > self.heroes_roll:
-            if self.hero.name == 'Riddaren' and self.monster_total_attack == 0:
+            if self.hero.name == 'The Knight' and self.monster_träff == 0:
+                self.monster_träff = self.monster_träff + 1
+                self.hero.use_skill()
                 print(
                     'Riddaren använder sin speciella förmåga, attacken blockerad\n')
-                self.monster_total_attack += 1
                 self.hero_choise()
             else:
                 print(f'{self.monster.name} attacks')
@@ -362,15 +364,8 @@ Enter Direction:
                 else:
                     self.hero_choise()
         elif self.monsters_roll < self.heroes_roll:
-            if self.hero.name == 'Riddaren' and self.monster_total_attack == 0:
-                # print('Riddaren använder sin speciella förmåga, attacken blockerad\n')
-                print(f"{self.monster.name} missed the attack\n")
-                self.monster_total_attack += 1
-                self.hero_choise()
-            else:
-                print(f"{self.monster.name} missed the attack\n")
-                self.monster_total_attack += 1
-                self.hero_choise()
+            print(f"{self.monster.name} missed the attack\n")
+            self.hero_choise()
 
     def hero_choise(self):
         hero_choise_menu = '''Choose the following:
