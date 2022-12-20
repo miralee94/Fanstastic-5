@@ -146,10 +146,9 @@ Enter Direction:
 
     def subMenu_Exit(self):
         SUB_MENU_TEXT = """
-            You have gone outside the map...
-            1. Do you want to keep playing?
-            2. Do you want to exit?
-            """
+You have gone outside the map...
+1. Do you want to keep playing?
+2. Do you want to exit?"""
         print(SUB_MENU_TEXT)
 
     def subMenu_Exit_choices(self):
