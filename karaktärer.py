@@ -13,39 +13,39 @@ class Riddaren(Character):
     def __init__(self):
         super().__init__(5, 9, 6, 4)
         self.name = "The Knight"
-        self.riddare_skill = "Sköldblock"
+        self.riddare_skill = "Shield block"
         self.block_chans = True
 
     def use_skill(self):
-        return f"Riddaren använder {self.riddare_skill} och blockar attacken."
+        return f"{self.name} used his {self.riddare_skill} and blocks the attack."
 
 
 class Trollkarlen(Character):
     def __init__(self):
         super().__init__(6, 4, 9, 5)
-        self.trollkarl_skill = "Ljussken"
+        self.trollkarl_skill = "Shining light"
         self.name = "The Wizard"
 
     def use_skill(self):
         oddsen = random.random() <= 0.80
         if oddsen is True:
-            return f"Trollkarlen använde {self.trollkarl_skill} och lyckades fly!"
+            return f"{self.name} used his {self.trollkarl_skill} and managed to escape!"
         elif oddsen is False:
-            return f'Trollkarlen använde {self.trollkarl_skill} men misslyckas att fly!'
+            return f'{self.name} used his {self.trollkarl_skill} but fails to escape!'
 
 
 class Tjuven(Character):
     def __init__(self):
         super().__init__(7, 5, 5, 7)
-        self.tjuv_skill = "Kritisk träff"
+        self.tjuv_skill = "Critical hit"
         self.name = "The Thief"
 
     def use_skill(self):
         oddsen = random.random() <= 0.25
         if oddsen is True:
-            return f'Tjuven använde sin {self.tjuv_skill} och lyckas göra dubbel damage'
+            return f'{self.name} used his {self.tjuv_skill} and manages to do double damage'
         elif oddsen is False:
-            return f'Tjuven använde sin {self.tjuv_skill} men misslyckas att göra dubbel damage'
+            return f'{self.name} used his {self.tjuv_skill} but fails to deal double damage'
 
 
 class Big_Spider(Character):
@@ -101,11 +101,3 @@ def print_hero():
     print_stats(character=Riddaren())
     print_stats(character=Trollkarlen())
     print_stats(character=Tjuven())
-
-
-if __name__ == "__main__":
-    # Exempel på hur man instanserar klassen
-    # riddare = Riddaren(initiativ=5, tålighet=9, attack=6, smidighet=4)
-    # # Exempel på hur man använder klassen, i detta fall Riddarens specialförmåga
-    # riddare.use_skill()
-    pass

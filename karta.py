@@ -2,6 +2,7 @@ from treasure import Lösa_slantar, Pengapung, Guldsmycket, Ädelsten, Liten_ska
 from random import randint, random
 from karaktärer import Riddaren, Tjuven, Trollkarlen, Big_Spider, Skeleton, Orc, Troll
 import os
+import time
 
 
 class Board:
@@ -38,46 +39,55 @@ class Board:
         return board_str
 
     def wait_for_user(self):
-        input("\nPlease press any key to continue.\n")
+        input("\nPlease press ENTER to continue.\n")
 
     def set_cell(self, row, col, value):
         # Set the value of the cell at the given row and column
         self.cells[row][col] = value
 
     def size_board(self):
-        size = input("Choose your size of the map, 4, 5 or 8\n")
-        if size == "4":
-            self.my_board = Board(4)
-            print(self.my_board)
-        elif size == "5":
-            self.my_board = Board(5)
-            print(self.my_board)
-        elif size == "8":
-            self.my_board = Board(8)
-            print(self.my_board)
-        else:
-            print("Try again!")
+        while True:
+            size = input("Choose your size of the map, 4, 5 or 8\n")
+            if size == "4":
+                self.my_board = Board(4)
+                print(self.my_board)
+                break
+            elif size == "5":
+                self.my_board = Board(5)
+                print(self.my_board)
+                break
+            elif size == "8":
+                self.my_board = Board(8)
+                print(self.my_board)
+                break
+            else:
+                print("Try again!")
 
     def starting_pos(self):
-        pos = input("""Wich corner would you like to start?
+        while True:
+            pos = input("""Wich corner would you like to start?
 1. Left uppercorner
 2. Right uppercorner
 3. Left bottom corner
 4. Right bottom corner\n""")
-        if pos == "1":
-            self.my_board.set_cell(0, 0, "H")
-            os.system('cls')
-        elif pos == "2":
-            self.my_board.set_cell(0, self.size - 1, "H")
-            os.system('cls')
-        elif pos == "3":
-            self.my_board.set_cell(self.size - 1, 0, "H")
-            os.system('cls')
-        elif pos == "4":
-            self.my_board.set_cell(self.size - 1, self.size - 1, "H")
-            os.system('cls')
-        else:
-            print("Try again!")
+            if pos == "1":
+                self.my_board.set_cell(0, 0, "H")
+                os.system('cls')
+                break
+            elif pos == "2":
+                self.my_board.set_cell(0, self.size - 1, "H")
+                os.system('cls')
+                break
+            elif pos == "3":
+                self.my_board.set_cell(self.size - 1, 0, "H")
+                os.system('cls')
+                break
+            elif pos == "4":
+                self.my_board.set_cell(self.size - 1, self.size - 1, "H")
+                os.system('cls')
+                break
+            else:
+                print("Try again!")
 
     def vart_är_jag(self):
         for j in self.my_board.cells:
@@ -154,7 +164,7 @@ You have gone outside the map...
     def subMenu_Exit_choices(self):
         subMenuChoice = int(input("Select an option: "))
         if subMenuChoice == 1:
-            self.gå_tillbaka()
+            self.go_back()
         elif subMenuChoice == 2:
             exit()  # Koppla Charalampos spara funktion
         else:
@@ -168,9 +178,9 @@ You have gone outside the map...
         slantar = Lösa_slantar()
         slantar.chance_of_appearance()
         if slantar.chance_of_appearance() is True:
-            self.treasure = slantar.värde
-            print(f'You found Lösa Slantar that is worth: {slantar.värde}')
-            self.points = self.points + slantar.värde
+            self.treasure = slantar.value
+            print(f'You found Lösa Slantar that is worth: {slantar.value}')
+            self.points = self.points + slantar.value
             print(f'You have total of points: {self.points}')
         else:
             pass
@@ -178,9 +188,9 @@ You have gone outside the map...
         pengapung = Pengapung()
         pengapung.chance_of_appearance()
         if pengapung.chance_of_appearance() is True:
-            self.treasure = slantar.värde
-            print(f'You found Pengapung that is worth: {pengapung.värde}')
-            self.points = self.points + pengapung.värde
+            self.treasure = slantar.value
+            print(f'You found Pengapung that is worth: {pengapung.value}')
+            self.points = self.points + pengapung.value
             print(f'You have total of points: {self.points}')
         else:
             pass
@@ -188,9 +198,9 @@ You have gone outside the map...
         guldsmycket = Guldsmycket()
         guldsmycket.chance_of_appearance()
         if guldsmycket.chance_of_appearance() is True:
-            self.treasure = slantar.värde
-            print(f'You found Guldsmycke that is worth: {guldsmycket.värde}')
-            self.points = self.points + guldsmycket.värde
+            self.treasure = slantar.value
+            print(f'You found Guldsmycke that is worth: {guldsmycket.value}')
+            self.points = self.points + guldsmycket.value
             print(f'You have total of points: {self.points}')
         else:
             pass
@@ -198,9 +208,9 @@ You have gone outside the map...
         ädelsten = Ädelsten()
         ädelsten.chance_of_appearance()
         if ädelsten.chance_of_appearance() is True:
-            self.treasure = slantar.värde
-            print(f'You found Ädelsten that is worth: {ädelsten.värde}')
-            self.points = self.points + ädelsten.värde
+            self.treasure = slantar.value
+            print(f'You found Ädelsten that is worth: {ädelsten.value}')
+            self.points = self.points + ädelsten.value
             print(f'You have total of points: {self.points}')
         else:
             pass
@@ -208,10 +218,10 @@ You have gone outside the map...
         liten_kista = Liten_skattkista()
         liten_kista.chance_of_appearance()
         if liten_kista.chance_of_appearance() is True:
-            self.treasure = slantar.värde
+            self.treasure = slantar.value
             print(
-                f'You found Liten skattkista that is worth: {liten_kista.värde}')
-            self.points = self.points + liten_kista.värde
+                f'You found Liten skattkista that is worth: {liten_kista.value}')
+            self.points = self.points + liten_kista.value
             print(f'You have total of points: {self.points}')
         else:
             pass
@@ -288,15 +298,19 @@ You have gone outside the map...
         print(f'{self.monster.name} roll: {self.monsters_roll}')
 
     def hero_choose(self):
-        choice2 = input("Enter your choice 1-3: ")
-        if choice2 == "1":
-            self.hero = 'Riddaren'
-        elif choice2 == "2":
-            self.hero = 'Trollkarlen'
-        elif choice2 == "3":
-            self.hero = 'Tjuven'
-        else:
-            print("\nYou didn't enter a valid input, try again!")
+        while True:
+            choice2 = input("Enter your choice 1-3: ")
+            if choice2 == "1":
+                self.hero = 'Riddaren'
+                break
+            elif choice2 == "2":
+                self.hero = 'Trollkarlen'
+                break
+            elif choice2 == "3":
+                self.hero = 'Tjuven'
+                break
+            else:
+                print("\nYou didn't enter a valid input, try again!")
 
     def check_hero(self):
         if self.hero == 'Riddaren':
@@ -328,14 +342,15 @@ You have gone outside the map...
             if self.hero.name == 'The Thief':
                 skill = self.hero.use_skill()
                 print(skill)
-                if skill == f'Tjuven använde sin {self.hero.tjuv_skill} och lyckas göra dubbel damage':
+                if skill == f'{self.hero.name} used his {self.hero.tjuv_skill} and manages to do double damage':
                     self.monster.life = self.monster.life - 1
             print(f'{self.hero.name} attacks')
             self.monster.life = self.monster.life - 1
             print(f'{self.monster.name} has {self.monster.life} life left\n')
-            self.wait_for_user()
             if self.monster.life <= 0:
                 print(f'{self.monster.name} died\n')
+                self.wait_for_user()
+                os.system('cls')
                 self.heroes_roll = 0
                 self.monsters_roll = 0
                 self.monster_träff = 0
@@ -380,6 +395,8 @@ You have gone outside the map...
                     print("Game over")
                     self.heroes_roll = 0
                     self.monsters_roll = 0
+                    time.sleep(2)
+                    exit()
                 else:
                     self.hero_choise()
         elif self.monsters_roll < self.heroes_roll:
@@ -387,35 +404,39 @@ You have gone outside the map...
             self.hero_choise()
 
     def hero_choise(self):
-        hero_choise_menu = '''Choose the following:
+        while True:
+            hero_choise_menu = '''Choose the following:
 1. Try to attack
 2. Try to escape\n'''
-        hero_choice = input(hero_choise_menu)
-        if hero_choice == '1':
-            self.heroes_attack()
-        elif hero_choice == '2':
-            # self.hero_try_escape()
-            if self.hero.name == 'The Wizard':
-                skill = self.hero.use_skill()
-                print(skill)
-                if skill == f"Trollkarlen använde {self.hero.trollkarl_skill} och lyckades fly!":
+            hero_choice = input(hero_choise_menu)
+            if hero_choice == '1':
+                self.heroes_attack()
+                break
+            elif hero_choice == '2':
+                if self.hero.name == 'The Wizard':
+                    skill = self.hero.use_skill()
+                    print(skill)
+                    if skill == f"{self.hero.name} used his {self.hero.trollkarl_skill} and managed to escape!":
+                        self.heroes_roll = 0
+                        self.monsters_roll = 0
+                        self.go_back()
+                    else:
+                        self.monster_attack()
+                        break
+                elif self.hero_try_escape() is True:
                     self.heroes_roll = 0
                     self.monsters_roll = 0
-                    self.gå_tillbaka()
+                    print(f'{self.hero.name} escaped')
+                    self.go_back()
+                    break
                 else:
+                    print(f'{self.hero.name} failed to escape')
                     self.monster_attack()
-            elif self.hero_try_escape() is True:
-                self.heroes_roll = 0
-                self.monsters_roll = 0
-                print(f'{self.hero.name} escaped')
-                self.gå_tillbaka()
+                    break
             else:
-                print(f'{self.hero.name} failed to escape')
-                self.monster_attack()
-        else:
-            print("Try again!")
+                print("Try again!")
 
-    def gå_tillbaka(self):
+    def go_back(self):
         self.vart_är_jag()
         i = self.where_now[-1]
         j = self.where_now[-2]
