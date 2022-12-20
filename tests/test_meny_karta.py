@@ -16,7 +16,7 @@ def test_main_menu_text():
     assert Menu.MAIN_MENU_TEXT == """
     Welcome!
 1. Start a new game
-2. Load game
+2. Load game (Not working)
 
 Type q or Q to exit the program"""
 
